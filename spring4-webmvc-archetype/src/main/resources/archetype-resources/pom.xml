@@ -23,8 +23,8 @@
     <jacoco.include.package>${package}.*</jacoco.include.package>
     <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
     <config.dir>config</config.dir>
-    <!-- Version -->
-    <slf4j-version>1.7.7</slf4j-version>
+    <!-- Library version -->
+    <slf4j-version>1.7.10</slf4j-version>
     <powermock-version>1.5.6</powermock-version>
   </properties>
 
@@ -33,7 +33,7 @@
       <dependency>
         <groupId>org.springframework</groupId>
         <artifactId>spring-framework-bom</artifactId>
-        <version>4.1.1.RELEASE</version>
+        <version>4.1.4.RELEASE</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -87,27 +87,27 @@
       <scope>compile</scope>
     </dependency>
 
-    <!-- Apache Commons -->
+    <!-- Template Engine -->
 
-    <!-- commons-lang3 -->
+    <!-- Thymeleaf -->
     <dependency>
-      <groupId>org.apache.commons</groupId>
-      <artifactId>commons-lang3</artifactId>
-      <version>3.3.2</version>
+      <groupId>org.thymeleaf</groupId>
+      <artifactId>thymeleaf</artifactId>
+      <version>2.1.3.RELEASE</version>
       <scope>compile</scope>
     </dependency>
-    <!-- commons-collections4 -->
+    <!-- Thymeleaf Spring4 -->
     <dependency>
-      <groupId>org.apache.commons</groupId>
-      <artifactId>commons-collections4</artifactId>
-      <version>4.0</version>
+      <groupId>org.thymeleaf</groupId>
+      <artifactId>thymeleaf-spring4</artifactId>
+      <version>2.1.3.RELEASE</version>
       <scope>compile</scope>
     </dependency>
-    <!-- commons-codec -->
+    <!-- Thymeleaf Extras Spring Security3 -->
     <dependency>
-      <groupId>commons-codec</groupId>
-      <artifactId>commons-codec</artifactId>
-      <version>1.9</version>
+      <groupId>org.thymeleaf.extras</groupId>
+      <artifactId>thymeleaf-extras-springsecurity3</artifactId>
+      <version>2.1.1.RELEASE</version>
       <scope>compile</scope>
     </dependency>
 
@@ -131,10 +131,17 @@
       <artifactId>spring-webmvc</artifactId>
       <scope>compile</scope>
     </dependency>
+    <!-- Spring JDBC -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-jdbc</artifactId>
+      <scope>compile</scope>
+    </dependency>
     <!-- Spring Transaction -->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-tx</artifactId>
+      <scope>compile</scope>
     </dependency>
 
     <!-- Spring Security -->
@@ -173,7 +180,7 @@
     <dependency>
       <groupId>javax.servlet.jsp</groupId>
       <artifactId>jsp-api</artifactId>
-      <version>2.2.1-b03</version>
+      <version>2.1</version>
       <scope>provided</scope>
     </dependency>
     <!-- JavaServer Pages Standard Tag Library Implementation (JSR-52) -->
@@ -201,14 +208,7 @@
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-validator</artifactId>
       <version>4.3.2.Final</version>
-      <scope>provided</scope>
-    </dependency>
-    <!-- Dependency Injection for Java (JSR-330) -->
-    <dependency>
-      <groupId>javax.inject</groupId>
-      <artifactId>javax.inject</artifactId>
-      <version>1</version>
-      <scope>provided</scope>
+      <scope>compile</scope>
     </dependency>
 
     <!-- Test -->
@@ -261,7 +261,13 @@
     <dependency>
       <groupId>org.aspectj</groupId>
       <artifactId>aspectjrt</artifactId>
-      <version>1.7.4</version>
+      <version>1.8.5</version>
+    </dependency>
+    <!-- AspectJ Weaver -->
+    <dependency>
+      <groupId>org.aspectj</groupId>
+      <artifactId>aspectjweaver</artifactId>
+      <version>1.8.5</version>
     </dependency>
     <!-- Jackson JSON Processor -->
     <dependency>
@@ -273,7 +279,7 @@
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
-      <version>1.12.6</version>
+      <version>1.14.8</version>
       <scope>provided</scope>
     </dependency>
 
@@ -293,6 +299,7 @@
           <compilerArguments>
             <endorseddirs>${endorsed.dir}</endorseddirs>
           </compilerArguments>
+          <compilerArgument>-proc:none</compilerArgument>
         </configuration>
       </plugin>
       <!-- Builds a Web Application Archive (WAR) -->
@@ -371,6 +378,13 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-site-plugin</artifactId>
         <version>3.3</version>
+        <dependencies>
+          <dependency><!-- add support for ssh/scp -->
+            <groupId>org.apache.maven.wagon</groupId>
+            <artifactId>wagon-ssh</artifactId>
+            <version>2.8</version>
+          </dependency>
+        </dependencies>
         <configuration>
           <locales>${site.locales}</locales>
           <inputEncoding>${project.build.sourceEncoding}</inputEncoding>
@@ -414,6 +428,18 @@
         </configuration>
       </plugin>
     </plugins>
+    <!-- Resources -->
+    <resources>
+      <!-- Artifact resources -->
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>true</filtering>
+      </resource>
+      <resource>
+        <directory>src/profiles/${profile.name}/resources</directory>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
   </build>
 
   <reporting>
@@ -422,7 +448,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-project-info-reports-plugin</artifactId>
-        <version>2.7</version>
+        <version>2.8</version>
       </plugin>
       <!-- Surefire Report -->
       <plugin>
@@ -464,7 +490,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-checkstyle-plugin</artifactId>
-        <version>2.12.1</version>
+        <version>2.14</version>
         <configuration>
           <configLocation>${config.dir}/checkstyle-checker.xml</configLocation>
         </configuration>
@@ -485,7 +511,7 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>javancss-maven-plugin</artifactId>
-        <version>2.0</version>
+        <version>2.1</version>
       </plugin>
       <!-- JDepend -->
       <plugin>
@@ -497,7 +523,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-pmd-plugin</artifactId>
-        <version>3.2</version>
+        <version>3.4</version>
         <configuration>
           <sourceEncoding>${project.build.sourceEncoding}</sourceEncoding>
           <skipEmptyReport>false</skipEmptyReport>
@@ -537,5 +563,36 @@
       </plugin>
     </plugins>
   </reporting>
+
+  <profiles>
+    <!-- Development -->
+    <profile>
+      <id>development</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <properties>
+        <profile.name>development</profile.name>
+        <thymeleaf.cacheable>false</thymeleaf.cacheable>
+      </properties>
+    </profile>
+    <!-- Integration -->
+    <profile>
+      <id>integration</id>
+      <properties>
+        <profile.name>integration</profile.name>
+        <thymeleaf.cacheable>true</thymeleaf.cacheable>
+      </properties>
+    </profile>
+    <!-- Production -->
+    <profile>
+      <id>production</id>
+      <properties>
+        <maven.test.skip>true</maven.test.skip>
+        <profile.name>production</profile.name>
+        <thymeleaf.cacheable>true</thymeleaf.cacheable>
+      </properties>
+    </profile>
+  </profiles>
 
 </project>

@@ -13,7 +13,7 @@ public class WelcomeController {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(WelcomeController.class);
 
-	@RequestMapping(value="/", method=RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String welcome(Model model) {
 		LOGGER.trace("Hello World!");
 		LOGGER.debug("How are you today?");
@@ -23,5 +23,4 @@ public class WelcomeController {
 		model.addAttribute("message", "Hello World!");
 		return "welcome";
 	}
-
 }

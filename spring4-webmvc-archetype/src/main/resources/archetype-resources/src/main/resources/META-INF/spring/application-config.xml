@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd">
+
+	<!-- Registers RequestMappingHandlerMapping, RequestMappingHandlerAdapter, and ExceptionHandlerExceptionResolver -->
+	<mvc:annotation-driven>
+		<mvc:message-converters register-defaults="true">
+			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+				<constructor-arg name="defaultCharset" value="UTF-8"/>
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+
+	<!-- Handles HTTP GET requests by efficiently serving up static resources -->
+	<mvc:resources mapping="/resources/**" location="/resources/"/>
+
+	<!-- Properties Configuration -->
+	<context:property-placeholder location="classpath:application.properties"/>
+
+	<!-- Message source -->
+	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basenames">
+			<list>
+				<value>classpath:/META-INF/i18n/messages</value>
+				<value>classpath:/META-INF/i18n/validation</value>
+			</list>
+		</property>
+		<property name="fileEncodings" value="UTF-8"/>
+	</bean>
+
+	<!-- Component Scan Configuration -->
+	<import resource="classpath:/META-INF/spring/component-config.xml"/>
+
+	<!-- DataSource Configuration -->
+	<import resource="classpath:/META-INF/spring/datasource-config.xml"/>
+
+	<!-- Transaction Configuration -->
+	<import resource="classpath:/META-INF/spring/transaction-config.xml"/>
+
+	<!-- View Configuration -->
+	<import resource="classpath:/META-INF/spring/view-config.xml"/>
+
+</beans>

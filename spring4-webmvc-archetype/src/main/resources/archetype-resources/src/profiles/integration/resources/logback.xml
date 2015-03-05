@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration>
-<configuration scan="true" scanPeriod="5 minutes" debug="true">
+<configuration scan="false">
 
   <!-- Properties -->
-  <property name="OUTPUT_DIR" value="log" />
-  <property name="MAX_HISTORY" value="10" />
+  <property name="OUTPUT_DIR" value="/var/log/${artifactId}" />
+  <property name="MAX_HISTORY" value="1" />
   <property name="ENCODER_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{60} - %msg%n" />
 
   <!-- Propagate level changes made to a logback logger into the equivalent logger in JUL -->
@@ -70,7 +70,7 @@
   </appender>
 
   <!-- Application Logger -->
-  <logger name="${package}" level="DEBUG" />
+  <logger name="${package}" level="INFO" />
 
   <!-- Root Logger -->
   <root level="INFO">

@@ -10,9 +10,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1"/>
 	<title>Application Title</title>
-	<link href="<c:url value="/resources/vendor/jquery-ui/jquery-ui-1.11.1.min.css"/>/" rel="stylesheet"/>
-	<script src="<c:url value="/resources/vendor/jquery/jquery-1.11.1.min.js" />" type="text/javascript"></script>
-	<script src="<c:url value="/resources/vendor/jquery-ui/jquery-ui-1.11.1.min.js" />" type="text/javascript"></script>
+	<script src="<c:url value="/resources/vendor/jquery/jquery-1.11.2.min.js" />" type="text/javascript"></script>
 </head>
 <body>
 	<h1>Spring 4 Web MVC Archetype</h1>

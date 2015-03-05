@@ -3,8 +3,8 @@
 <configuration scan="true" scanPeriod="5 minutes" debug="true">
 
   <!-- Properties -->
-  <property name="OUTPUT_DIR" value="target/logs" />
-  <property name="MAX_HISTORY" value="30" />
+  <property name="OUTPUT_DIR" value="log" />
+  <property name="MAX_HISTORY" value="10" />
   <property name="ENCODER_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{60} - %msg%n" />
 
   <!-- Propagate level changes made to a logback logger into the equivalent logger in JUL -->

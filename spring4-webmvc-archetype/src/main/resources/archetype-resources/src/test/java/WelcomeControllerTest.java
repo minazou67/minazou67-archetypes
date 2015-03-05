@@ -18,7 +18,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-@ContextConfiguration(locations = {"classpath:spring/application-config.xml"})
+@ContextConfiguration(locations = {"classpath:META-INF/spring/application-config.xml"})
 public class WelcomeControllerTest {
 
 	@Autowired
