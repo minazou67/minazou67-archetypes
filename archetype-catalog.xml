@@ -11,7 +11,7 @@
     <archetype>
       <groupId>org.minazou67.archetypes</groupId>
       <artifactId>spring4-webmvc-archetype</artifactId>
-      <version>1.1.0</version>
+      <version>1.1.1</version>
       <description>This is the Spring 4 Web MVC archetype. Using the Spring Security + SLF4J + Logback + Thymeleaf.</description>
     </archetype>
   </archetypes>

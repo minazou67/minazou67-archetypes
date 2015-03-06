@@ -5,11 +5,11 @@
   <parent>
     <groupId>org.minazou67.archetypes</groupId>
     <artifactId>minazou67-archetypes</artifactId>
-    <version>1.1.0</version>
+    <version>1.1.1</version>
   </parent>
 
   <artifactId>spring4-webmvc-archetype</artifactId>
-  <version>1.1.0</version>
+  <version>1.1.1</version>
   <packaging>jar</packaging>
 
   <name>spring4-webmvc-archetype</name>
