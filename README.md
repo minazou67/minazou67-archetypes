@@ -5,7 +5,7 @@ Maven Archetypes for Java.
 
 # Overview
 
-* javase-simple-archetype
+## javase-simple-archetype
   * JDK 1.7
   * Dependencies
     * SLF4J
@@ -25,7 +25,8 @@ Maven Archetypes for Java.
     * Surefire
   * Reporting
     * many…
-* spring4-webmvc-archetype
+
+## spring4-webmvc-archetype
   * JDK 1.7
   * Dependencies
     * SLF4J
