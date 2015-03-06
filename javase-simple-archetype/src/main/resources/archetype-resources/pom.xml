@@ -83,13 +83,6 @@
       <version>4.0</version>
       <scope>compile</scope>
     </dependency>
-    <!-- commons-codec -->
-    <dependency>
-      <groupId>commons-codec</groupId>
-      <artifactId>commons-codec</artifactId>
-      <version>1.9</version>
-      <scope>compile</scope>
-    </dependency>
 
     <!-- Test -->
 

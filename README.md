@@ -30,6 +30,7 @@ Maven Archetypes for Java.
   * Dependencies
     * SLF4J
     * Logback
+    * Thymeleaf
     * Spring MVC
     * Spring Security
     * Java EE 6
