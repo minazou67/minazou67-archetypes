@@ -1,18 +1,25 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
   <modelVersion>4.0.0</modelVersion>
+
+  <!-- The Basics -->
   <groupId>org.minazou67.archetypes</groupId>
   <artifactId>minazou67-archetypes</artifactId>
-  <version>1.1.2</version>
+  <version>1.1.4</version>
   <packaging>pom</packaging>
-
-  <name>minazou67-archetypes</name>
-  <description>This is the maven archetypes.</description>
 
   <modules>
     <module>javase-simple-archetype</module>
     <module>spring4-webmvc-archetype</module>
   </modules>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <!-- More Project Information -->
+  <name>minazou67-archetypes</name>
+  <description>This is the maven archetypes.</description>
 
   <licenses>
     <license>
@@ -22,6 +29,7 @@
     </license>
   </licenses>
 
+  <!-- Environment Settings -->
   <distributionManagement>
     <repository>
       <id>nexus-releases</id>

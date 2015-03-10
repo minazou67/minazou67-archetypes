@@ -2,16 +2,22 @@
 
   <modelVersion>4.0.0</modelVersion>
 
+  <!-- The Basics -->
+  <artifactId>spring4-webmvc-archetype</artifactId>
+  <version>1.1.2</version>
+  <packaging>jar</packaging>
+
   <parent>
     <groupId>org.minazou67.archetypes</groupId>
     <artifactId>minazou67-archetypes</artifactId>
-    <version>1.1.2</version>
+    <version>1.1.4</version>
   </parent>
 
-  <artifactId>spring4-webmvc-archetype</artifactId>
-  <version>1.1.1</version>
-  <packaging>jar</packaging>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
 
+  <!-- More Project Information -->
   <name>spring4-webmvc-archetype</name>
   <description>This is the Spring 4 Web MVC archetype. Using the Spring Security + SLF4J + Logback + Thymeleaf.</description>
 
