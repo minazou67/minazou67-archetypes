@@ -4,13 +4,13 @@
 
   <!-- The Basics -->
   <artifactId>javase-simple-archetype</artifactId>
-  <version>1.1.1</version>
+  <version>1.1.2-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <parent>
     <groupId>org.minazou67.archetypes</groupId>
     <artifactId>minazou67-archetypes</artifactId>
-    <version>1.1.5</version>
+    <version>1.1.6-SNAPSHOT</version>
   </parent>
 
   <properties>
