@@ -1,11 +1,38 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
   <modelVersion>4.0.0</modelVersion>
+
+  <!-- The Basics -->
   <groupId>${groupId}</groupId>
   <artifactId>${artifactId}</artifactId>
   <version>${version}</version>
   <packaging>war</packaging>
 
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <project.scm.id>my-scm-id</project.scm.id>
+    <site.locales>ja</site.locales>
+    <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
+    <config.dir>config</config.dir>
+    <!-- Compiler -->
+    <maven.compiler.source>1.7</maven.compiler.source>
+    <maven.compiler.target>1.7</maven.compiler.target>
+    <!-- Checkstyle -->
+    <checkstyle.config.location>${config.dir}/checkstyle-checker.xml</checkstyle.config.location>
+    <!-- Findbugs -->
+    <findbugs.effort>Max</findbugs.effort>
+    <findbugs.excludeFilterFile>${config.dir}/findbugs-exclude.xml</findbugs.excludeFilterFile>
+    <findbugs.xmlOutput>true</findbugs.xmlOutput>
+    <!-- Library version -->
+    <slf4j-version>1.7.10</slf4j-version>
+    <powermock-version>1.5.6</powermock-version>
+    <!-- Plugin version -->
+    <javadoc-version>2.9.1</javadoc-version>
+    <jacoco-version>0.7.2.201409121644</jacoco-version>
+  </properties>
+
+  <!-- More Project Information -->
   <name>project name</name>
   <url>http://www.myproject.org</url>
   <description>project description.</description>
@@ -14,19 +41,6 @@
     <name>organization name</name>
     <url>http://www.myorganization.org</url>
   </organization>
-
-  <properties>
-    <jdk.version>1.7</jdk.version>
-    <site.locales>ja</site.locales>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <jacoco.include.package>${package}.*</jacoco.include.package>
-    <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
-    <config.dir>config</config.dir>
-    <!-- Library version -->
-    <slf4j-version>1.7.10</slf4j-version>
-    <powermock-version>1.5.6</powermock-version>
-  </properties>
 
   <dependencyManagement>
     <dependencies>
@@ -217,7 +231,7 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.11</version>
+      <version>4.12</version>
       <scope>test</scope>
     </dependency>
     <!-- Spring Test -->
@@ -285,6 +299,7 @@
 
   </dependencies>
 
+  <!-- Build Settings -->
   <build>
     <plugins>
       <!-- Compiler -->
@@ -293,9 +308,6 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>2.5.1</version>
         <configuration>
-          <source>${jdk.version}</source>
-          <target>${jdk.version}</target>
-          <encoding>${project.build.sourceEncoding}</encoding>
           <compilerArguments>
             <endorseddirs>${endorsed.dir}</endorseddirs>
           </compilerArguments>
@@ -360,7 +372,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
-        <version>2.9.1</version>
+        <version>${javadoc-version}</version>
         <configuration>
           <additionalJOption>-J-Dfile.encoding=${project.build.sourceEncoding}</additionalJOption>
         </configuration>
@@ -373,29 +385,11 @@
           </execution>
         </executions>
       </plugin>
-      <!-- Site -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-site-plugin</artifactId>
-        <version>3.3</version>
-        <dependencies>
-          <dependency><!-- add support for ssh/scp -->
-            <groupId>org.apache.maven.wagon</groupId>
-            <artifactId>wagon-ssh</artifactId>
-            <version>2.8</version>
-          </dependency>
-        </dependencies>
-        <configuration>
-          <locales>${site.locales}</locales>
-          <inputEncoding>${project.build.sourceEncoding}</inputEncoding>
-          <outputEncoding>${project.reporting.outputEncoding}</outputEncoding>
-        </configuration>
-      </plugin>
       <!-- JaCoCo -->
       <plugin>
         <groupId>org.jacoco</groupId>
         <artifactId>jacoco-maven-plugin</artifactId>
-        <version>0.7.2.201409121644</version>
+        <version>${jacoco-version}</version>
         <executions>
           <execution>
             <id>default-prepare-agent</id>
@@ -404,9 +398,6 @@
             </goals>
             <configuration>
               <propertyName>jacoco.agent.argLine</propertyName>
-              <includes>
-                <include>${jacoco.include.package}</include>
-              </includes>
             </configuration>
           </execution>
           <execution>
@@ -418,16 +409,45 @@
           </execution>
         </executions>
       </plugin>
-      <!-- Surefire -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>2.12.4</version>
-        <configuration>
-          <argLine>-Dfile.encoding=${project.build.sourceEncoding} ${jacoco.agent.argLine}</argLine>
-        </configuration>
-      </plugin>
     </plugins>
+    <!-- Plugin management -->
+    <pluginManagement>
+      <plugins>
+        <!-- Site -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-site-plugin</artifactId>
+          <version>3.3</version>
+          <dependencies>
+            <dependency><!-- add support for ssh/scp -->
+              <groupId>org.apache.maven.wagon</groupId>
+              <artifactId>wagon-ssh</artifactId>
+              <version>2.8</version>
+            </dependency>
+          </dependencies>
+          <configuration>
+            <locales>${site.locales}</locales>
+            <inputEncoding>${project.build.sourceEncoding}</inputEncoding>
+            <outputEncoding>${project.reporting.outputEncoding}</outputEncoding>
+          </configuration>
+        </plugin>
+        <!-- Surefire -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>2.12.4</version>
+          <configuration>
+            <argLine>-Dfile.encoding=${project.build.sourceEncoding} ${jacoco.agent.argLine}</argLine>
+          </configuration>
+        </plugin>
+        <!-- Release -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-release-plugin</artifactId>
+          <version>2.5.1</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
     <!-- Resources -->
     <resources>
       <!-- Artifact resources -->
@@ -470,30 +490,25 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
-        <version>2.9.1</version>
+        <version>${javadoc-version}</version>
         <configuration>
-          <source>${jdk.version}</source>
+          <source>${maven.compiler.source}</source>
           <locale>${site.locales}</locale>
           <additionalJOption>-J-Dfile.encoding=${project.build.sourceEncoding}</additionalJOption>
-          <encoding>${project.build.sourceEncoding}</encoding>
           <charset>${project.reporting.outputEncoding}</charset>
-          <docencoding>${project.reporting.outputEncoding}</docencoding>
         </configuration>
       </plugin>
       <!-- JaCoCo -->
       <plugin>
         <groupId>org.jacoco</groupId>
         <artifactId>jacoco-maven-plugin</artifactId>
-        <version>0.7.2.201409121644</version>
+        <version>${jacoco-version}</version>
       </plugin>
       <!-- Checkstyle -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-checkstyle-plugin</artifactId>
         <version>2.14</version>
-        <configuration>
-          <configLocation>${config.dir}/checkstyle-checker.xml</configLocation>
-        </configuration>
       </plugin>
       <!-- FindBugs -->
       <plugin>
@@ -501,10 +516,7 @@
         <artifactId>findbugs-maven-plugin</artifactId>
         <version>3.0.0</version>
         <configuration>
-          <effort>Max</effort>
-          <xmlOutput>true</xmlOutput>
           <findbugsXmlOutput>true</findbugsXmlOutput>
-          <excludeFilterFile>${config.dir}/findbugs-exclude.xml</excludeFilterFile>
         </configuration>
       </plugin>
       <!-- NCSS -->
@@ -525,9 +537,7 @@
         <artifactId>maven-pmd-plugin</artifactId>
         <version>3.4</version>
         <configuration>
-          <sourceEncoding>${project.build.sourceEncoding}</sourceEncoding>
           <skipEmptyReport>false</skipEmptyReport>
-          <targetJdk>${jdk.version}</targetJdk>
         </configuration>
       </plugin>
       <!-- Tag List -->
@@ -563,6 +573,24 @@
       </plugin>
     </plugins>
   </reporting>
+
+  <!-- Environment Settings -->
+  <scm>
+    <connection>scm:git:http://hostname/gitbucket/git/someone/${artifactId}.git</connection>
+    <url>http://hostname/gitbucket/someone/${artifactId}</url>
+  </scm>
+
+  <distributionManagement>
+    <repository>
+      <id>hostname-nexus-releases</id>
+      <url>http://hostname/nexus/content/repositories/releases</url>
+    </repository>
+    <snapshotRepository>
+      <id>hostname-nexus-snapshots</id>
+      <name>Internal Repository</name>
+      <url>http://hostname/nexus/content/repositories/snapshots</url>
+    </snapshotRepository>
+  </distributionManagement>
 
   <profiles>
     <!-- Development -->
