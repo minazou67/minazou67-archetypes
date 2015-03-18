@@ -34,16 +34,6 @@
     <jacoco-version>0.7.2.201409121644</jacoco-version>
   </properties>
 
-  <!-- More Project Information -->
-  <name>project name</name>
-  <url>http://www.myproject.org</url>
-  <description>project description.</description>
-
-  <organization>
-    <name>organization name</name>
-    <url>http://www.myorganization.org</url>
-  </organization>
-
   <dependencies>
 
     <!-- Logging -->
@@ -405,7 +395,22 @@
     </plugins>
   </reporting>
 
+  <!-- More Project Information -->
+  <name>project name</name>
+  <url>http://www.myproject.org</url>
+  <description>project description.</description>
+
+  <organization>
+    <name>organization name</name>
+    <url>http://www.myorganization.org</url>
+  </organization>
+
   <!-- Environment Settings -->
+  <issueManagement>
+    <system>GitBucket</system>
+    <url>http://hostname/gitbucket/someone/${artifactId}/issues</url>
+  </issueManagement>
+
   <scm>
     <connection>scm:git:http://hostname/gitbucket/git/someone/${artifactId}.git</connection>
     <url>http://hostname/gitbucket/someone/${artifactId}</url>
