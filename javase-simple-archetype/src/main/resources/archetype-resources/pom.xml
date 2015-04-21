@@ -198,6 +198,9 @@
             <goals>
               <goal>jar</goal>
             </goals>
+            <configuration>
+              <additionalparam>${javadoc.opts}</additionalparam>
+            </configuration>
           </execution>
         </executions>
       </plugin>
@@ -316,6 +319,7 @@
           <source>${maven.compiler.source}</source>
           <locale>${site.locales}</locale>
           <additionalJOption>-J-Dfile.encoding=${project.build.sourceEncoding}</additionalJOption>
+          <additionalparam>${javadoc.opts}</additionalparam>
           <charset>${project.reporting.outputEncoding}</charset>
         </configuration>
       </plugin>
@@ -427,5 +431,18 @@
       <url>http://hostname/nexus/content/repositories/snapshots</url>
     </snapshotRepository>
   </distributionManagement>
+
+  <profiles>
+    <!-- Disable the doclint in the case of JDK 1.8 -->
+    <profile>
+      <id>doclint-java8-disable</id>
+      <activation>
+        <jdk>[1.8,)</jdk>
+      </activation>
+      <properties>
+        <javadoc.opts>-Xdoclint:none</javadoc.opts>
+      </properties>
+    </profile>
+  </profiles>
 
 </project>
