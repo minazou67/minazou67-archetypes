@@ -2,7 +2,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="
-		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd">
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
 
 	<!-- TemplateResolver <- TemplateEngine <- ViewResolver -->
 
@@ -21,7 +21,7 @@
 		<!-- Additional Spring Security Dialects -->
 		<property name="additionalDialects">
 			<set>
-				<bean class="org.thymeleaf.extras.springsecurity3.dialect.SpringSecurityDialect"/>
+				<bean class="org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect"/>
 			</set>
 		</property>
 	</bean>
