@@ -5,7 +5,7 @@
   <!-- The Basics -->
   <groupId>org.minazou67.archetypes</groupId>
   <artifactId>minazou67-archetypes</artifactId>
-  <version>1.1.9-SNAPSHOT</version>
+  <version>1.1.9</version>
   <packaging>pom</packaging>
 
   <modules>
@@ -47,7 +47,7 @@
   <scm>
     <connection>scm:git:https://github.com/minazou67/minazou67-archetypes.git</connection>
     <url>https://github.com/minazou67/minazou67-archetypes</url>
-    <tag>HEAD</tag>
+    <tag>1.1.9</tag>
   </scm>
 
   <distributionManagement>
