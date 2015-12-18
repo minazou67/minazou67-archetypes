@@ -312,6 +312,7 @@
         <configuration>
           <failOnMissingWebXml>false</failOnMissingWebXml>
           <archive>
+            <addMavenDescriptor>false</addMavenDescriptor>
             <manifest>
               <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
             </manifest>

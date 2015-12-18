@@ -163,6 +163,7 @@
         <version>2.6</version>
         <configuration>
           <archive>
+            <addMavenDescriptor>false</addMavenDescriptor>
             <manifest>
               <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
               <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
