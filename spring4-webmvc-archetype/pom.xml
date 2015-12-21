@@ -4,13 +4,13 @@
 
   <!-- The Basics -->
   <artifactId>spring4-webmvc-archetype</artifactId>
-  <version>1.1.6-SNAPSHOT</version>
+  <version>1.1.6</version>
   <packaging>jar</packaging>
 
   <parent>
     <groupId>org.minazou67.archetypes</groupId>
     <artifactId>minazou67-archetypes</artifactId>
-    <version>1.1.11-SNAPSHOT</version>
+    <version>1.1.11</version>
   </parent>
 
   <properties>
