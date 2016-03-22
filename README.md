@@ -49,3 +49,10 @@ Maven Archetypes for Java.
     * Surefire
   * Reporting
     * many…
+
+# How to use
+
+```ShellSession
+mvn install archetype:update-local-catalog
+mvn archetype:generate -DarchetypeCatalog=local
+```
